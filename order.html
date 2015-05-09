@@ -1,0 +1,84 @@
+<html>
+<head>
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet">
+<style>
+body {
+  margin-top: 30px;
+  background-color: rgb(236, 255, 236);
+  color: #404040;
+}
+
+.main {
+  background-color: #fff;
+  padding: 30px;
+}
+
+.purchase-container {
+  text-align: center;
+}
+
+.purchase-container button {
+  font-weight: bold;
+}
+
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3 main">
+      <div style="text-align:center; margin-bottom: 15px; padding: 30px;">
+        <span style="font-size: 38px; color: rgb(92, 184, 92);"n>
+          <i class="glyphicon glyphicon-tree-deciduous" style="vertical-align: middle; padding-bottom: 8px;"></i>
+        </span>
+        <span style="font-size:28px;">Neutral Gas</span>
+      </div>
+      <div>
+        <p>
+        <strong>You are purchasing a micro-offset.  We buy carbon offsets in bulk so you don't have to.</strong>  Instead, focus on little purchases like your last gas fill-up.
+        </p>
+        <p>
+        We do not profit.  Every month, bulk purchase records are <a href="http://neutralgas.com/transparency">published</a> online.  You'll be notified by email when your order is fulfilled as part of a bulk purchase on the last day of the month.
+        </p>
+      </div>
+      <div class="purchase-container">
+        <button id="purchase-button" class="btn btn-success">Purchase</button>
+      </div>
+    </div> <!-- /center-block -->
+  </div>  <!-- /row -->
+</div>  <!-- /container -->
+
+<script src="https://checkout.stripe.com/checkout.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
+<script>
+$(function() {
+  // $('button').trigger('click');
+  var amount = getParameterByName('amount') || 1000;
+
+  var handler = StripeCheckout.configure({
+    key: 'pk_test_6pRNASCoBOKtIshFeQd4XMUh'
+  });
+
+  $('#purchase-button').on('click', function() {
+    handler.open({
+      name: 'Neutral Gas',
+      description: 'Micro carbon offset',
+      amount: amount,
+    });
+    return false;
+  });
+
+  $(window).on('popstate', function() {
+    handler.close();
+  });
+});
+
+function getParameterByName(name) {
+  name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+  var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+      results = regex.exec(location.search);
+  return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+}
+</script>
+</body>
+</html>
