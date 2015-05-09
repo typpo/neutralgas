@@ -1,5 +1,7 @@
 <html>
 <head>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet">
 <style>
 body {
@@ -8,17 +10,53 @@ body {
   color: #404040;
 }
 
+@media only screen and (max-device-width: 480px) {
+  body {
+    margin-top: 0;
+  }
+}
+
 .main {
   background-color: #fff;
   padding: 30px;
 }
 
 .purchase-container {
+  margin-top: 30px;
   text-align: center;
 }
 
 .purchase-container button {
   font-weight: bold;
+}
+
+.img-container {
+  margin-top: 40px;
+  margin-bottom: 30px;
+  text-align: center;
+  color: #aaa;
+}
+
+.img-container img {
+  width: 100%;
+  height: auto;
+}
+
+.img-container p {
+  margin-top: 20px;
+}
+
+.footer {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  background-color: rgb(203, 255, 203);
+  text-align: center;
+  padding: 10px;
+  font-size: 10px;
 }
 
 </style>
@@ -35,14 +73,24 @@ body {
       </div>
       <div>
         <p>
-        <strong>You are purchasing a micro-offset.  We buy carbon offsets in bulk so you don't have to.</strong>  Instead, focus on little purchases like your last gas fill-up.
+        <strong>You are purchasing a micro-offset.  We buy carbon offsets in bulk so you don't have to.</strong>  Now you can target small purchases like your last gas fill-up.
         </p>
         <p>
-        We do not profit.  Every month, bulk purchase records are <a href="http://neutralgas.com/transparency">published</a> online.  You'll be notified by email when your order is fulfilled as part of a bulk purchase on the last day of the month.
+        We don't profit.  Every month, bulk purchase records are <a href="http://neutralgas.com/transparency">published</a> online.  You'll be notified by email when your order is fulfilled as part of a bulk purchase on the last day of the month.
         </p>
       </div>
       <div class="purchase-container">
         <button id="purchase-button" class="btn btn-success">Purchase</button>
+      </div>
+
+      <div class="img-container">
+        <img src="http://www.weebly.com/uploads/4/8/0/0/48009693/382885093.jpg">
+        <p>
+          We support carbon-reducing projects in places like Costa Rica and Ghana.
+        </p>
+      </div>
+      <div class="footer">
+        &copy; 2015 <a href="http://ianww.com">ian webster</a>
       </div>
     </div> <!-- /center-block -->
   </div>  <!-- /row -->
