@@ -1,0 +1,139 @@
+<html>
+<head>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet">
+<style>
+body {
+  margin-top: 30px;
+  background-color: rgb(236, 255, 236);
+  color: #404040;
+}
+
+@media only screen and (max-device-width: 480px) {
+  body {
+    margin-top: 0;
+  }
+}
+
+.main {
+  background-color: #fff;
+  padding: 30px;
+}
+
+.purchase-container {
+  margin-top: 30px;
+  text-align: center;
+}
+
+.purchase-container button {
+  font-weight: bold;
+}
+
+.img-container {
+  margin-top: 40px;
+  margin-bottom: 30px;
+  text-align: center;
+  color: #aaa;
+}
+
+.img-container img {
+  width: 100%;
+  height: auto;
+}
+
+.img-container p {
+  margin-top: 20px;
+}
+
+.footer {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  background-color: rgb(203, 255, 203);
+  text-align: center;
+  padding: 10px;
+  font-size: 10px;
+}
+
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3 main">
+      <div style="text-align:center; margin-bottom: 0; padding: 20px;">
+        <span style="font-size: 38px; color: rgb(92, 184, 92);"n>
+          <i class="glyphicon glyphicon-tree-deciduous" style="vertical-align: middle; padding-bottom: 8px;"></i>
+        </span>
+        <span style="font-size:28px;">Neutral Gas</span>
+      </div>
+      <div style="margin-bottom: 40px">
+        <p>
+        Our public launch was in mid-May 2015.
+        </p>
+        <p>
+          <ul>
+            <li><a href="#">April 2015</a> - 5 micro-offsets totalling $10 - private beta</li>
+          </ul>
+        </p>
+      </div>
+      <div class="footer">
+        &copy; 2015 <a href="http://ianww.com">Ian Webster</a>
+      </div>
+    </div> <!-- /center-block -->
+  </div>  <!-- /row -->
+</div>  <!-- /container -->
+
+<script src="https://checkout.stripe.com/checkout.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
+<script>
+$(function() {
+  // $('button').trigger('click');
+  var stripePrice = getParameterByName('amount') || 100;
+
+  var handler = StripeCheckout.configure({
+    key: 'pk_test_6pRNASCoBOKtIshFeQd4XMUh'
+  });
+
+  $('#purchase-button').on('click', function() {
+    handler.open({
+      name: 'Neutral Gas',
+      description: 'Micro carbon offset',
+      amount: stripePrice,
+    });
+    return false;
+  });
+
+  var updatePrice = function() {
+    var val = parseInt($(this).val());
+    var price = (val/10);
+    if (isNaN(price) || price <= 0) {
+      price = 10;
+    }
+    var display = Math.round(price) == price ?
+      price.toFixed(0) : price.toFixed(2)
+    $('#price').text(display);
+    stripePrice = Math.round(price * 100);
+  };
+
+  $('#gallons').on('keyup', updatePrice);
+  $('#gallons').on('change', updatePrice);
+
+  $(window).on('popstate', function() {
+    handler.close();
+  });
+});
+
+function getParameterByName(name) {
+  name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+  var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+      results = regex.exec(location.search);
+  return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+}
+</script>
+</body>
+</html>
