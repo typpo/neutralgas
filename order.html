@@ -121,6 +121,9 @@ $(function() {
   var openTime;
   var handler = StripeCheckout.configure({
     key: 'pk_test_DfWFqx41f7WRUXrMKEXIOYXQ',
+    token: function(token) {
+
+    },
     opened: function() {
       openTime = +new Date();
     },
