@@ -116,10 +116,10 @@ body {
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
 <script>
 $(function() {
-  var presetAmount = getParameterByName('amount');
-  var stripePrice = presetAmount || 100;
-  if (presetAmount) {
-    $('#gallons').val(parseInt(presetAmount / 11.11));
+  var presetGallons = parseInt(getParameterByName('gals'));
+  var stripePrice = (presetGallons * 11.11) || 100;
+  if (presetGallons) {
+    $('#gallons').val(presetGallons);
   }
 
   var handler = StripeCheckout.configure({
