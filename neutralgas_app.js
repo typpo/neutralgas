@@ -2,7 +2,7 @@ var express = require('express');
 var app = express();
 
 var stripe = require('stripe')(
-  'sk_test_QtaCVFGyu6TU64oLfWcJpiFq'
+  require('./config.js').STRIPE_SK
 );
 
 app.get('/pay', function (req, res) {
@@ -22,9 +22,8 @@ app.get('/pay', function (req, res) {
   });
 });
 
-var server = app.listen(3000, function () {
+var server = app.listen(4111, function () {
   var host = server.address().address;
   var port = server.address().port;
-
   console.log('Example app listening at http://%s:%s', host, port);
 });
