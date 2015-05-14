@@ -60,6 +60,11 @@ body {
   font-size: 10px;
 }
 
+#thanks {
+  background-color:rgb(203, 255, 203);
+  padding: 10px;
+}
+
 </style>
 </head>
 <body>
@@ -73,6 +78,9 @@ body {
         <span style="font-size:28px;">Neutral Gas</span>
       </div>
       <div>
+        <p id="thanks" style="display:none">
+          Thanks!  We'll follow up with confirmation of your offset.
+        </p>
         <p>
         <strong>You are purchasing a micro-offset.  We buy carbon offsets in bulk so you don't have to</strong>.  Instead, you can target small purchases like your last gas fill-up.
         </p>
@@ -87,6 +95,7 @@ body {
           </label>
         </div>
         <div>
+          <script src="https://checkout.stripe.com/checkout.js"></script>
           <button id="purchase-button" class="btn btn-success">Purchase offset: $<span id="price">1</span></button>
         </div>
       </div>
@@ -104,15 +113,24 @@ body {
   </div>  <!-- /row -->
 </div>  <!-- /container -->
 
-<script src="https://checkout.stripe.com/checkout.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
 <script>
 $(function() {
-  // $('button').trigger('click');
   var stripePrice = getParameterByName('amount') || 100;
 
+  var openTime;
   var handler = StripeCheckout.configure({
-    key: 'pk_test_DfWFqx41f7WRUXrMKEXIOYXQ'
+    key: 'pk_test_DfWFqx41f7WRUXrMKEXIOYXQ',
+    opened: function() {
+      openTime = +new Date();
+    },
+    closed: function() {
+      // stripe doesn't tell me if it was successful so I'm going to look like
+      // an idiot...
+      if (+new Date() - openTime > 10 * 1000) {
+        $('#thanks').show('fast');
+      }
+    }
   });
 
   $('#purchase-button').on('click', function() {
@@ -120,6 +138,7 @@ $(function() {
       name: 'Neutral Gas',
       description: 'Micro carbon offset',
       amount: stripePrice,
+      bitcoin: true
     });
     return false;
   });
