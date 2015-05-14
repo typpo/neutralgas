@@ -79,7 +79,7 @@ body {
       </div>
       <div>
         <p id="thanks" style="display:none">
-          Thanks!  We'll follow up with confirmation of your offset.
+          Thanks!  Your order is being processed.  We'll follow up with confirmation of your offset.
         </p>
         <p>
         <strong>You are purchasing a micro-offset.  We buy carbon offsets in bulk so you don't have to</strong>.  Instead, you can target small purchases like your last gas fill-up.
@@ -91,7 +91,7 @@ body {
       <div class="purchase-container">
         <div>
           <label>Gallons of gas &nbsp;
-            <input id="gallons" type="number" value="10" style="width: 3em"/>
+            <input id="gallons" type="number" value="9" style="width: 3em"/>
           </label>
         </div>
         <div>
@@ -118,22 +118,20 @@ body {
 $(function() {
   var stripePrice = getParameterByName('amount') || 100;
 
-  var openTime;
   var handler = StripeCheckout.configure({
     key: 'pk_test_DfWFqx41f7WRUXrMKEXIOYXQ',
     token: function(token) {
-
+      document.body.style.cursor='wait';
+      $.get('/pay?email=' + token.email + '&tok=' + token.id + '&amount=' +
+        stripePrice, function(resp) {
+          document.body.style.cursor='default';
+          if (resp === 'ok') {
+            $('#thanks').show();
+          } else {
+            alert('Uh oh, something went wrong.  Your card was not charged.');
+          }
+      });
     },
-    opened: function() {
-      openTime = +new Date();
-    },
-    closed: function() {
-      // stripe doesn't tell me if it was successful so I'm going to look like
-      // an idiot...
-      if (+new Date() - openTime > 10 * 1000) {
-        $('#thanks').show('fast');
-      }
-    }
   });
 
   $('#purchase-button').on('click', function() {
@@ -148,7 +146,7 @@ $(function() {
 
   var updatePrice = function() {
     var val = parseInt($(this).val());
-    var price = (val/10);
+    var price = (val/9);
     if (isNaN(price) || price <= 0) {
       price = 10;
     }
