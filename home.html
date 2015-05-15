@@ -4,7 +4,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Neutral Gas - Micro Carbon Offsets</title>
 <script>
-if (window.location.href.indexOf('https://') < 0) {
+if (window.location.href.indexOf('https://') < 0 && window.location.href.indexOf('localhost') < 0 && window.location.href.indexOf('home.html') < 0) {
   window.location.href = 'https://www.neutralgas.com';
 }
 </script>
@@ -160,7 +160,9 @@ body {
         </div>
         <div>
           <script src="https://checkout.stripe.com/checkout.js"></script>
-          <button id="purchase-button" class="btn btn-success">Donate now: $<span id="price">1</span></button>
+          <button id="purchase-button" class="btn btn-success">
+            <i class="glyphicon glyphicon-globe"></i>
+            Donate now: $<span id="price">1</span></button>
         </div>
       </div>
 
