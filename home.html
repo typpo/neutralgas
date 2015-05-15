@@ -2,11 +2,11 @@
 <head>
 <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Order | Neutral Gas</title>
+<title>Neutral Gas - Micro Carbon Offsets</title>
 <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet">
 <style>
 body {
-  margin-top: 30px;
+  margin-top: 10px;
   background-color: rgb(236, 255, 236);
   color: #404040;
 }
@@ -28,7 +28,12 @@ body {
 }
 
 .purchase-container button {
+  margin-top:10px;
   font-weight: bold;
+}
+
+.explanation {
+  margin-top: 40px;
 }
 
 .img-container {
@@ -65,42 +70,112 @@ body {
   padding: 10px;
 }
 
+.banner {
+  background: url(http://cdn1.editmysite.com/uploads/4/8/0/0/48009693/background-images/1157337551.jpg);
+  background-color: transparent;
+  background-size: cover;
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  width: 100%;
+  height: 40%;
+
+  padding: 15px;
+  padding-top: 6%;
+  color: white;
+  text-align: center;
+}
+
+.banner-main {
+  font-size:48px;
+  font-weight: bold;
+}
+
+.banner-sub {
+  margin-top: 30px;
+  font-size: 18px;
+}
+
+@media only screen and (max-device-width: 480px) {
+  .banner-main {
+    font-size: 18px;
+    font-weight: bold;
+  }
+
+  .banner-sub {
+    margin-top: 30px;
+    font-size: 16px;
+  }
+}
+
+.container {
+  background-color: #fff;
+}
+
+@-ms-viewport{
+  width: device-width;
+}
+
 </style>
 </head>
 <body>
+<div style="text-align:center; margin-bottom: 15px;">
+  <span style="font-size: 38px; color: rgb(92, 184, 92);"n>
+    <i class="glyphicon glyphicon-tree-deciduous" style="vertical-align: middle; padding-bottom: 8px;"></i>
+  </span>
+  <span style="font-size:28px;">Neutral Gas</span>
+</div>
+<div class="banner">
+  <p class="banner-main">Make your car eco-friendly for $1 per fill-up</p>
+  <p class="banner-sub">Balance the environmental impact of your last tank of gas.</p>
+</div>
 <div class="container">
   <div class="row">
-    <div class="col-md-6 col-md-offset-3 main">
-      <div style="text-align:center; margin-bottom: 15px; padding: 30px;">
-        <span style="font-size: 38px; color: rgb(92, 184, 92);"n>
-          <i class="glyphicon glyphicon-tree-deciduous" style="vertical-align: middle; padding-bottom: 8px;"></i>
-        </span>
-        <span style="font-size:28px;">Neutral Gas</span>
-      </div>
+    <div class="col-lg-10 col-lg-offset-1 main">
       <div>
         <p id="thanks" style="display:none">
           Thanks!  Your order is being processed.  We'll follow up with confirmation of your offset.
         </p>
-        <p>
-        <strong>You are purchasing a micro-offset.  We buy carbon offsets in bulk so you don't have to</strong>.  Instead, you can target small purchases like your last gas fill-up.
-        </p>
-        <p>
-        We don't profit.  Every month, bulk purchase records are <a href="https://neutralgas.com/transparency.html">published</a> online.  You'll be notified by email when your order is fulfilled on the last day of the month.
-        </p>
+        <div style="font-size: 19px">
+          <p><strong>Offset your car's emissions by investing $1 in carbon-positive projects.</strong></p>
+
+          <p>
+            <ul style="line-height: 1.8">
+              <li>Carbon offsets reduce emissions elsewhere in order to compensate for your own emissions.</li>
+              <li>We offer "micro" offsets so you can avoid bulk purchases and instead focus on specific impact.</li>
+              <li>We don't make any profit and we post records of all offset purchases.</li>
+            </ul>
+          </p>
+        </div>
       </div>
-      <div class="purchase-container">
+      <div class="purchase-container well">
         <div>
-          <label>Gallons of gas &nbsp;
-            <input id="gallons" type="number" value="9" style="width: 3em"/>
+          <label>My last fill-up was &nbsp;
+            <input id="gallons" type="number" value="9" style="width: 3em"/> &nbsp; gallons
           </label>
         </div>
         <div>
           <script src="https://checkout.stripe.com/checkout.js"></script>
-          <button id="purchase-button" class="btn btn-success">Purchase offset: $<span id="price">1</span></button>
+          <button id="purchase-button" class="btn btn-success">Donate now: $<span id="price">1</span></button>
         </div>
       </div>
 
-      <div class="img-container">
+      <div class="explanation col-lg-6">
+        <p><strong>How it works</strong></p>
+        <p>
+        A carbon offset is a reduction in emissions of carbon dioxide or greenhouse gases made in order to compensate for an emission made elsewhere.
+        </p>
+        <p>
+        Most people don't want to buy many tons of carbon offsets at a time.  We purchase carbon offsets in bulk, lock in lower prices, and sell the rest in smaller chunks.
+        </p>
+        <p style="margin-top: 30px"><strong>Accountability &amp; Transparency</strong></p>
+        <p>
+        Neutral Gas is non-profit.  We post records of all carbon purchases online in our <a href="/transparency">Transparency Report</a> and will notify customers when their micro-offset has been fulfilled in a larger bulk purchase.  Bulk purchases occur at the end of each month.
+        </p>
+        <p>
+        All funds charged by Neutral Gas, less credit card fees, go to fund sustainable projects via the <a href="http://www.carbonneutral.com/">Carbon Neutral Company</a>.
+        </p>
+      </div>
+      <div class="img-container col-offset-6 col-lg-6">
         <img src="https://www.weebly.com/uploads/4/8/0/0/48009693/382885093.jpg">
         <p>
           We support carbon-positive projects in places like Costa Rica and Ghana.

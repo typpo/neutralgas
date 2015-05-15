@@ -7,7 +7,7 @@ var stripe = require('stripe')(
 );
 
 app.get('/', function(req, res) {
-  serveFile('index.html', res);
+  serveFile('home.html', res);
 });
 
 app.get('/order', function(req, res) {
