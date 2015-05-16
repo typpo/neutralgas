@@ -210,7 +210,7 @@ $(function() {
   }
 
   var handler = StripeCheckout.configure({
-    key: 'pk_test_DfWFqx41f7WRUXrMKEXIOYXQ',
+    key: 'pk_live_WIFdx3ri57SHTRAF5mm13yWW',
     token: function(token) {
       document.body.style.cursor='wait';
       $.get('/pay?email=' + token.email + '&tok=' + token.id + '&amount=' +
