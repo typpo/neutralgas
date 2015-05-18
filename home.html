@@ -21,7 +21,7 @@ body {
   line-height: 1.65;
 }
 
-@media only screen and (max-device-width: 480px) {
+@media screen and (max-width: 480px) {
   body {
     margin-top: 0;
   }
@@ -100,12 +100,18 @@ body {
   font-weight: bold;
 }
 
+@media screen and (max-width: 1024px) {
+  .banner-main {
+    font-size: 36px;
+  }
+}
+
 .banner-sub {
   margin-top: 30px;
   font-size: 18px;
 }
 
-@media only screen and (max-device-width: 480px) {
+@media screen and (max-width: 480px) {
   .banner-main {
     font-size: 18px;
     font-weight: bold;
